@@ -1,0 +1,39 @@
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1> お気に入りの Web サイト登録画面</h1>
+
+<form method="post" action="/weblist">
+  <% if @user %>
+    <input type="hidden" name="id" value="<%= @user.id %>">
+  <% end %>
+  <table>
+    <tr>
+      <th><label for="name">ページ名</label></th>
+      <th><label for="url">URL</label></th>
+    </tr>
+    <tr>
+      <td><input type="text" id="name" name="name"></td>
+      <td><input type="text" id="url" name="url"></td>
+      <td><input type="submit" value="登録する"></td>
+    </tr>
+  </table>
+</form>
+
+    <table border>
+      <tr>
+	<th>web site</th>
+	<th>URL</th>
+      </tr>
+      <% @web.each do |web_record| %>
+      <tr>
+<td><%= web_record.page_name %></td>
+<td><a href="<%= web_record.url %>"><%= web_record.url %></a></td>
+      </tr>
+      <% end %>
+    </table>
+  </body>
+</html>
+
